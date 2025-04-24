@@ -11,12 +11,13 @@ app.post('/upload', async (req, res) => {
   const targetUrl = 'https://script.google.com/macros/s/AKfycby1eepW4cUzuvWjM_r61A848NLQmXI9PumEW0j6mxdPQgAmLelaQOZolrKkB83cx_b0/exec';
   try {
     const response = await fetch(targetUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(req.body)
-    });
-    const json = await response.json();
-res.json(json); // sends it as a real JSON object
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(req.body)
+});
+const json = await response.json();
+res.json(json); // ✅ Don't use res.send(text)
+
   } catch (err) {
     res.status(500).send('Proxy error: ' + err.message);
   }
