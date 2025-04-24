@@ -15,8 +15,8 @@ app.post('/upload', async (req, res) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body)
     });
-    const text = await response.text();
-    res.send(text);
+    const json = await response.json();
+res.json(json); // sends it as a real JSON object
   } catch (err) {
     res.status(500).send('Proxy error: ' + err.message);
   }
